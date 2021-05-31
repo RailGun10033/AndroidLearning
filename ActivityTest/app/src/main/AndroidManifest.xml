@@ -9,10 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SecondActivity"></activity>
+        <activity android:name=".third_layout">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="andriod.intent.category.DEFAULT"></category>
+<!--                <category android:name="andriod.intent.category.BROWSABLE"></category>-->
+                <data android:scheme="http"></data>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SecondActivity"
+            android:label="第二个活动">
+            <intent-filter>
+                <action android:name="com.example.activitytest.ACTION_START"></action>
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.example.activitytest.MY_CATEGORY" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".FirstActivity"
-            android:label="Luder&apos;s MacbookPro">
+            android:launchMode="singleTop"
+            android:label="主活动">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

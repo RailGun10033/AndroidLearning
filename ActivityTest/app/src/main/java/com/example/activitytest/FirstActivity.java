@@ -1,9 +1,13 @@
 package com.example.activitytest;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,12 +15,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class FirstActivity extends AppCompatActivity {
-
+    public static String TAG = "FirstActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
+        Log.d(TAG, "onCreate: ");
+        Log.d(TAG, this.toString());
 //        给当前活动加载一个布局
         setContentView(R.layout.first_layout);
 
@@ -26,7 +31,60 @@ public class FirstActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(FirstActivity.this, "退出程序", Toast.LENGTH_SHORT).show();
 //                销毁活动
-                finish();
+//                finish();
+
+                Intent intent = new Intent(FirstActivity.this, FirstActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button button_next = (Button) findViewById(R.id.button_next);
+        button_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                显示Intent
+//                Intent intent = new Intent(FirstActivity.this,SecondActivity.class);
+
+//                隐式Intent
+                Intent intent = new Intent("com.example.activitytest.ACTION_START");
+
+//                category
+                intent.addCategory("com.example.activitytest.MY_CATEGORY");
+                startActivity(intent);
+            }
+
+        });
+
+        Button button_open_url = (Button)findViewById(R.id.button_openurl);
+        button_open_url.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://www.baidu.com"));
+                startActivity(intent);
+                Toast.makeText(FirstActivity.this,"打开浏览器",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button button_tel10086 = (Button)findViewById(R.id.button_tel);
+        button_tel10086.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:10086"));
+                startActivity(intent);
+            }
+        });
+
+        Button buttonsenddata = (Button)findViewById(R.id.button_senddata);
+        buttonsenddata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String data = "你好，第二个活动  --来自主活动的问候";
+                Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+                intent.putExtra("extra_data", data);
+//                startActivity(intent); //只发送信息
+                startActivityForResult(intent, 1);
             }
         });
     }
@@ -79,4 +137,17 @@ public class FirstActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode){
+            case 1:
+                if (resultCode == RESULT_OK){
+                    String returnData = data.getStringExtra("data_return");
+                    Toast.makeText(FirstActivity.this,returnData,Toast.LENGTH_SHORT).show();
+                    Log.i("FirstActivity ", returnData);
+                }
+                break;
+            default:
+        }
+    }
 }

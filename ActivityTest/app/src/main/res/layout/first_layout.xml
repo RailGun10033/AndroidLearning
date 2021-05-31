@@ -5,11 +5,40 @@
     android:layout_height="match_parent">
 
 <!--    添加一个按钮-->
+
+    <Button
+        android:id="@+id/button_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="启动第二个活动"
+        />
+
+    <Button
+        android:id="@+id/button_openurl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打开浏览器"
+        />
+
+    <Button
+        android:id="@+id/button_tel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="拨打10086"
+        />
+
+    <Button
+        android:id="@+id/button_senddata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送信息给活动二" />
+
     <Button
         android:id="@+id/button_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="退出程序"
         />
+
 
 </LinearLayout>
