@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ProgressBar"
+        android:textAllCaps="false">
+    </Button>
+
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_bar"
+        ></ProgressBar>
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_bar_horizontal"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100">
+    </ProgressBar>
+
+    <Button
+        android:id="@+id/button_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ADD"
+        android:textAllCaps="false">
+    </Button>
+
+    <Button
+        android:id="@+id/button_sub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SUB"
+        android:textAllCaps="false">
+    </Button>
+
+</LinearLayout>
